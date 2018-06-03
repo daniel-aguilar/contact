@@ -11,6 +11,7 @@ form_data = {
 
 
 @override_settings(
+    EMAIL_TO_ADDRESS='daniel@example.com',
     CONTACT_URL='http://test-server.com/contact/',
     THANKS_URL='http://test-server.com/thanks/'
 )
@@ -22,6 +23,10 @@ class ContactTestCase(SimpleTestCase):
     def test_email_subject(self):
         self.client.post('/contact/', form_data)
         self.assertEqual(mail.outbox[0].subject, 'Contact - subject')
+
+    def test_email_recipients(self):
+        self.client.post('/contact/', form_data)
+        self.assertCountEqual(mail.outbox[0].recipients(), ['daniel@example.com'])
 
     def test_valid_form_redirect(self):
         response = self.client.post('/contact/', form_data)
