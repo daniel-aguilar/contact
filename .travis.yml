@@ -3,3 +3,5 @@ python:
     - "3.6"
 script:
     - make test
+after_success:
+    - coveralls
