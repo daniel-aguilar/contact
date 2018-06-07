@@ -11,7 +11,12 @@ from .forms import ContactForm
 @csrf_exempt
 @require_POST
 def contact(request):
-    form = ContactForm(request.POST)
+    captcha_field = 'captcha_response'
+
+    data = request.POST.copy()
+    data[captcha_field] = request.POST.get('g-recaptcha-response')
+
+    form = ContactForm(data)
 
     if form.is_valid():
         template = get_template('message')
@@ -24,4 +29,6 @@ def contact(request):
         )
         return HttpResponseRedirect(settings.THANKS_URL)
     else:
+        if form.has_error(captcha_field, 'required'):
+            return HttpResponseRedirect(settings.ERROR_URL)
         return HttpResponseRedirect(settings.CONTACT_URL)
