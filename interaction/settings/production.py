@@ -4,8 +4,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__fi
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = []
-
 INSTALLED_APPS = [
     'contact',
     'corsheaders',
@@ -15,8 +13,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'interaction.urls'
@@ -70,12 +66,7 @@ LOGGING = {
     },
 }
 
-X_FRAME_OPTIONS = 'DENY'
-
 SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
-
-SECURE_BROWSER_XSS_FILTER = True
 
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
