@@ -63,7 +63,7 @@ LOGGING = {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
         },
-        'emr': {
+        'contact': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
         },
