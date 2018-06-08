@@ -19,7 +19,7 @@ def contact(request):
     form = ContactForm(data)
 
     if form.is_valid():
-        template = get_template('message')
+        template = get_template('contact/message')
 
         send_mail(
             'Contact - {}'.format(form.cleaned_data['subject']),
