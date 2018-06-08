@@ -5,3 +5,7 @@ script:
     - make test
 after_success:
     - coveralls
+deploy:
+    provider: heroku
+    api_key:
+        secure: RqG5rChwXR1yLdlCcLJPwi1V/E/p9oukxlrecrSWSlolbU9hys3fOwiRDFJ1NDVmPvfQ+tLP7quYU8hVv9WbE+cnRRrsK/4iDyC3MTC7iGvHsyKDtCKH211RfEfVrejv7DtDDOmUj9WLg/9gEczCd9/Qiu5FT6gZcb/qqi0XueLjXYWhZ3UA/GwQUH+1s2uk7A3hKqVthy2YZPagGxvQGQgKRwfd/LVHqtnbDm68yZqS/+kQ4bwmzVQXP1Op+sWvx+NtpITJ9eERJfUUt1qnbAFIBPfYPD1rU0cawpCWaQGcTLho1eoHJ6lN4Jvw657PPmbLKX6n8I5KYceHyGrMhMDeEmO7gMgQPqdYndFvkSa8wky4W6K0wIgca3+jZuE41XDGBqQtkQkdCCeKFGAFzewPIL0oB5/5GYpU+NZerWzvWFlg/r1PHOKxcEhzJD4LKq0QIYJUKUVXRmbcg9CNrE9d1ew+OV7x3CtgL51Vs/1aVXwiPCYNtO3qZq7SLthDfsVERu74jZMatwW9wRtRoMkEHF8xEjaSX+dPM1Xy0cMsi7/pLNFgZBNDqjP4HySIvs6oSmHxW7yQRRnIPB8oW3ELb4paV71atIE7FxlPLciJPE876BBgO+6BE+qJpnoQ7CGW0FXvCfUIQBnVHYIZd/eBBqYTl9bGDmdZDkmq85U=
