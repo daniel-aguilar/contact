@@ -10,7 +10,6 @@ from contact.forms import CaptchaField
 form_data = {
     'name': 'Daniel',
     'email': 'daniel@example.com',
-    'subject': 'subject',
     'message': 'message',
     'g-recaptcha-response': 'I am not a robot',
 }
@@ -18,7 +17,6 @@ form_data = {
 
 @override_settings(
     EMAIL_TO_ADDRESS='daniel@example.com',
-    CONTACT_URL='http://test-server.com/contact/',
     THANKS_URL='http://test-server.com/thanks/',
     ERROR_URL='http://test-server.com/oops/'
 )
@@ -29,7 +27,6 @@ class ContactTestCase(SimpleTestCase):
         self.client.post('/contact/', form_data)
 
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Contact - subject')
         self.assertCountEqual(mail.outbox[0].recipients(), ['daniel@example.com'])
 
     @patch('contact.forms.CaptchaField.validate')
@@ -44,7 +41,7 @@ class ContactTestCase(SimpleTestCase):
         response = self.client.post('/contact/', invalid_data)
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.get('Location'), settings.CONTACT_URL)
+        self.assertEqual(response.get('Location'), settings.ERROR_URL)
 
     def test_empty_captcha(self):
         invalid_data = form_data.copy()
@@ -61,7 +58,7 @@ class ContactTestCase(SimpleTestCase):
         response = self.client.post('/contact/', form_data)
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.get('Location'), settings.CONTACT_URL)
+        self.assertEqual(response.get('Location'), settings.ERROR_URL)
 
 
 @patch('requests.post')

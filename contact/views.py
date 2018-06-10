@@ -22,13 +22,11 @@ def contact(request):
         template = get_template('contact/message')
 
         send_mail(
-            'Contact - {}'.format(form.cleaned_data['subject']),
+            'New message from your contact form',
             template.render(form.cleaned_data),
             None,
             [settings.EMAIL_TO_ADDRESS]
         )
         return HttpResponseRedirect(settings.THANKS_URL)
     else:
-        if form.has_error(captcha_field, 'required'):
-            return HttpResponseRedirect(settings.ERROR_URL)
-        return HttpResponseRedirect(settings.CONTACT_URL)
+        return HttpResponseRedirect(settings.ERROR_URL)
