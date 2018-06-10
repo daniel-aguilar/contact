@@ -4,6 +4,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__fi
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+ALLOWED_HOSTS = ['contact-daniel.herokuapp.com']
+
 INSTALLED_APPS = [
     'contact',
     'corsheaders',
