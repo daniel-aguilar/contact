@@ -8,12 +8,10 @@ ALLOWED_HOSTS = ['contact-daniel.herokuapp.com']
 
 INSTALLED_APPS = [
     'contact',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
 
