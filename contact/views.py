@@ -11,10 +11,8 @@ from .forms import ContactForm
 @csrf_exempt
 @require_POST
 def contact(request):
-    captcha_field = 'captcha_response'
-
     data = request.POST.copy()
-    data[captcha_field] = request.POST.get('g-recaptcha-response')
+    data['captcha_response'] = request.POST.get('g-recaptcha-response')
 
     form = ContactForm(data)
 

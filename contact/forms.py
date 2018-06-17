@@ -11,7 +11,7 @@ class CaptchaField(forms.CharField):
 
         url = 'https://www.google.com/recaptcha/api/siteverify'
         data = {
-            'secret': settings.RECAPTCHA_SECRET,
+            'secret': settings.RECAPTCHA_SECRET_KEY,
             'response': value,
         }
         response = requests.post(url, data)
