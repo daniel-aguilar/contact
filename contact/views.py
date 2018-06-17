@@ -12,7 +12,7 @@ from .forms import ContactForm
 @require_POST
 def contact(request):
     data = request.POST.copy()
-    data['captcha_response'] = request.POST.get('g-recaptcha-response')
+    data.setlist('captcha_response', data.pop('g-recaptcha-response', None))
 
     form = ContactForm(data)
 
