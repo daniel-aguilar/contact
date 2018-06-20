@@ -22,8 +22,8 @@ def contact(request):
         send_mail(
             'New message from your contact form',
             template.render(form.cleaned_data),
-            None,
-            [settings.EMAIL_TO_ADDRESS]
+            settings.EMAIL_ADDRESS,
+            [settings.EMAIL_ADDRESS]
         )
         return HttpResponseRedirect(settings.THANKS_URL)
     else:

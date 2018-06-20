@@ -16,7 +16,7 @@ form_data = {
 
 
 @override_settings(
-    EMAIL_TO_ADDRESS='daniel@example.com',
+    EMAIL_ADDRESS='daniel@example.com',
     THANKS_URL='http://test-server.com/thanks/',
     ERROR_URL='http://test-server.com/oops/'
 )
