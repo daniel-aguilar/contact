@@ -5,14 +5,7 @@ from django.core import mail
 from django.core.exceptions import ValidationError
 from django.test import SimpleTestCase, override_settings
 
-from contact.forms import CaptchaField
-
-form_data = {
-    'name': 'Daniel',
-    'email': 'daniel@example.com',
-    'message': 'message',
-    'g-recaptcha-response': 'I am not a robot',
-}
+from .forms import CaptchaField
 
 
 @override_settings(
@@ -21,41 +14,30 @@ form_data = {
     ERROR_URL='http://test-server.com/oops/'
 )
 class ContactTestCase(SimpleTestCase):
+    def setUp(self):
+        self.form_data = {
+            'name': 'Daniel',
+            'email': 'daniel@example.com',
+            'message': 'message',
+            'g-recaptcha-response': 'I am not a robot',
+        }
 
     @patch('contact.forms.CaptchaField.validate')
     def test_send_email(self, validate):
-        self.client.post('/contact/', form_data)
+        self.client.post('/contact/', self.form_data)
 
         self.assertEqual(len(mail.outbox), 1)
         self.assertCountEqual(mail.outbox[0].recipients(), ['daniel@example.com'])
 
     @patch('contact.forms.CaptchaField.validate')
     def test_form_redirect(self, validate):
-        response = self.client.post('/contact/', form_data)
+        response = self.client.post('/contact/', self.form_data)
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.get('Location'), settings.THANKS_URL)
 
-        invalid_data = form_data.copy()
-        invalid_data['name'] = ''
-        response = self.client.post('/contact/', invalid_data)
-
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.get('Location'), settings.ERROR_URL)
-
-    def test_empty_captcha(self):
-        invalid_data = form_data.copy()
-        invalid_data['g-recaptcha-response'] = ''
-        response = self.client.post('/contact/', invalid_data)
-
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.get('Location'), settings.ERROR_URL)
-
-    @patch('contact.forms.CaptchaField.validate')
-    def test_invalid_captcha(self, validate):
         validate.side_effect = ValidationError('Invalid CAPTCHA', code='captcha')
-
-        response = self.client.post('/contact/', form_data)
+        response = self.client.post('/contact/', self.form_data)
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.get('Location'), settings.ERROR_URL)
