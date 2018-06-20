@@ -55,11 +55,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        'core': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-        },
-        'contact': {
+        'interaction': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
         },
