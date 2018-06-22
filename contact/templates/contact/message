@@ -1,4 +1,6 @@
+{% autoescape off %}
 Name: {{ name }}
 Email: {{ email }}
 
 {{ message }}
+{% endautoescape %}

@@ -20,10 +20,8 @@ ROOT_URLCONF = 'interaction.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
-        'OPTIONS': {
-            'autoescape': False,
-        },
     },
 ]
 
@@ -73,5 +71,5 @@ EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
 
 RECAPTCHA_SECRET_KEY = os.getenv('RECAPTCHA_SECRET_KEY')
 
-THANKS_URL = os.getenv('THANKS_URL')
-ERROR_URL = os.getenv('ERROR_URL')
+HOMEPAGE_URL = os.getenv('HOMEPAGE_URL')
+CONTACT_URL = os.getenv('CONTACT_URL')

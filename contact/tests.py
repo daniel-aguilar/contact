@@ -10,8 +10,8 @@ from .forms import CaptchaField
 
 @override_settings(
     EMAIL_ADDRESS='daniel@example.com',
-    THANKS_URL='http://test-server.com/thanks/',
-    ERROR_URL='http://test-server.com/oops/'
+    HOMEPAGE_URL='http://test-server.com/',
+    CONTACT_URL='http://test-server.com/contact/'
 )
 class ContactTestCase(SimpleTestCase):
     def setUp(self):
@@ -30,17 +30,27 @@ class ContactTestCase(SimpleTestCase):
         self.assertCountEqual(mail.outbox[0].recipients(), ['daniel@example.com'])
 
     @patch('contact.forms.CaptchaField.validate')
-    def test_form_redirect(self, validate):
+    def test_valid_form(self, validate):
         response = self.client.post('/contact/', self.form_data)
 
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.get('Location'), settings.THANKS_URL)
+        self.assertEqual(response.status_code, 200)
+        self.assertCountEqual(
+            [t.name for t in response.templates],
+            ['contact/message', 'base.html', 'contact/success.html']
+        )
+        self.assertEqual(response.context['back_url'], settings.HOMEPAGE_URL)
 
+    @patch('contact.forms.CaptchaField.validate')
+    def test_invalid_form(self, validate):
         validate.side_effect = ValidationError('Invalid CAPTCHA', code='captcha')
         response = self.client.post('/contact/', self.form_data)
 
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.get('Location'), settings.ERROR_URL)
+        self.assertEqual(response.status_code, 200)
+        self.assertCountEqual(
+            [t.name for t in response.templates],
+            ['base.html', 'contact/error.html']
+        )
+        self.assertEqual(response.context['back_url'], settings.CONTACT_URL)
 
 
 @patch('requests.post')

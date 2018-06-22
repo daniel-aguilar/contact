@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.mail import send_mail
-from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.template.loader import get_template
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -25,6 +25,14 @@ def contact(request):
             settings.EMAIL_ADDRESS,
             [settings.EMAIL_ADDRESS]
         )
-        return HttpResponseRedirect(settings.THANKS_URL)
+        return render(
+            request,
+            'contact/success.html',
+            {'back_url': settings.HOMEPAGE_URL}
+        )
     else:
-        return HttpResponseRedirect(settings.ERROR_URL)
+        return render(
+            request,
+            'contact/error.html',
+            {'back_url': settings.CONTACT_URL}
+        )
