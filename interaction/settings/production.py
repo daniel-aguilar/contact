@@ -23,6 +23,14 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
     },
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'NAME': 'plaintext',
+        'OPTIONS': {
+            'autoescape': False,
+        },
+    },
 ]
 
 WSGI_APPLICATION = 'interaction.wsgi.application'

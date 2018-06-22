@@ -17,7 +17,7 @@ def contact(request):
     form = ContactForm(data)
 
     if form.is_valid():
-        template = get_template('contact/message')
+        template = get_template('contact/message', 'plaintext')
 
         send_mail(
             'New message from your contact form',
