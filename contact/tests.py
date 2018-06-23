@@ -1,6 +1,5 @@
 from unittest.mock import MagicMock, patch
 
-from django.conf import settings
 from django.core import mail
 from django.core.exceptions import ValidationError
 from django.test import SimpleTestCase, override_settings
@@ -9,16 +8,16 @@ from .forms import CaptchaField
 
 
 @override_settings(
-    EMAIL_SENDER='contact@example.com',
-    EMAIL_RECIPIENT='daniel@example.com',
-    HOMEPAGE_URL='http://test-server.com/',
-    CONTACT_URL='http://test-server.com/contact/'
+    EMAIL_SENDER='contact@website.com',
+    EMAIL_RECIPIENT='daniel@website.com',
+    HOMEPAGE_URL='http://website.com/',
+    CONTACT_URL='http://website.com/contact/'
 )
 class ContactTestCase(SimpleTestCase):
     def setUp(self):
         self.form_data = {
-            'name': 'Daniel',
-            'email': 'daniel@example.com',
+            'name': 'Alice',
+            'email': 'alice@example.com',
             'message': 'message',
             'g-recaptcha-response': 'I am not a robot',
         }
@@ -28,8 +27,8 @@ class ContactTestCase(SimpleTestCase):
         self.client.post('/contact/', self.form_data)
 
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].from_email, 'contact@example.com')
-        self.assertCountEqual(mail.outbox[0].recipients(), ['daniel@example.com'])
+        self.assertEqual(mail.outbox[0].from_email, 'contact@website.com')
+        self.assertCountEqual(mail.outbox[0].recipients(), ['daniel@website.com'])
 
     @patch('contact.forms.CaptchaField.validate')
     def test_valid_form(self, validate):
@@ -40,7 +39,7 @@ class ContactTestCase(SimpleTestCase):
             [t.name for t in response.templates],
             ['contact/message', 'base.html', 'contact/success.html']
         )
-        self.assertEqual(response.context['back_url'], settings.HOMEPAGE_URL)
+        self.assertEqual(response.context['back_url'], 'http://website.com/')
 
     @patch('contact.forms.CaptchaField.validate')
     def test_invalid_form(self, validate):
@@ -52,7 +51,7 @@ class ContactTestCase(SimpleTestCase):
             [t.name for t in response.templates],
             ['base.html', 'contact/error.html']
         )
-        self.assertEqual(response.context['back_url'], settings.CONTACT_URL)
+        self.assertEqual(response.context['back_url'], 'http://website.com/contact/')
 
 
 @patch('requests.post')
