@@ -1,7 +1,4 @@
-.PHONY: coverage test isort lint
-
-coverage: test
-	coverage report
+.PHONY: test isort lint
 
 test: lint
 	coverage run manage.py test --settings "interaction.settings.dev"
