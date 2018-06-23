@@ -22,8 +22,8 @@ def contact(request):
         send_mail(
             'New message from your contact form',
             template.render(form.cleaned_data),
-            settings.EMAIL_ADDRESS,
-            [settings.EMAIL_ADDRESS]
+            settings.EMAIL_SENDER,
+            [settings.EMAIL_RECIPIENT]
         )
         return render(
             request,

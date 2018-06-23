@@ -9,7 +9,8 @@ from .forms import CaptchaField
 
 
 @override_settings(
-    EMAIL_ADDRESS='daniel@example.com',
+    EMAIL_SENDER='contact@example.com',
+    EMAIL_RECIPIENT='daniel@example.com',
     HOMEPAGE_URL='http://test-server.com/',
     CONTACT_URL='http://test-server.com/contact/'
 )
@@ -27,6 +28,7 @@ class ContactTestCase(SimpleTestCase):
         self.client.post('/contact/', self.form_data)
 
         self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].from_email, 'contact@example.com')
         self.assertCountEqual(mail.outbox[0].recipients(), ['daniel@example.com'])
 
     @patch('contact.forms.CaptchaField.validate')
