@@ -60,7 +60,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        'interaction': {
+        'contact': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
         },
