@@ -1,6 +1,6 @@
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname((os.path.abspath(__file__)))))
+BASE_DIR = os.path.dirname(os.path.dirname((os.path.abspath(__file__))))
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -15,25 +15,24 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-ROOT_URLCONF = 'interaction.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
     },
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'APP_DIRS': True,
         'NAME': 'plaintext',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'OPTIONS': {
             'autoescape': False,
         },
     },
 ]
 
-WSGI_APPLICATION = 'interaction.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 TIME_ZONE = 'UTC'
 

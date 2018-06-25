@@ -17,7 +17,7 @@ def contact(request):
     form = ContactForm(data)
 
     if form.is_valid():
-        template = get_template('contact/message', 'plaintext')
+        template = get_template('message', 'plaintext')
 
         send_mail(
             'New message from your contact form',
@@ -27,12 +27,12 @@ def contact(request):
         )
         return render(
             request,
-            'contact/success.html',
+            'success.html',
             {'back_url': settings.HOMEPAGE_URL}
         )
     else:
         return render(
             request,
-            'contact/error.html',
+            'error.html',
             {'back_url': settings.CONTACT_URL}
         )

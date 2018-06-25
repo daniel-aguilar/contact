@@ -37,7 +37,7 @@ class ContactTestCase(SimpleTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertCountEqual(
             [t.name for t in response.templates],
-            ['contact/message', 'base.html', 'contact/success.html']
+            ['message', 'base.html', 'success.html']
         )
         self.assertEqual(response.context['back_url'], 'http://website.com/')
 
@@ -49,7 +49,7 @@ class ContactTestCase(SimpleTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertCountEqual(
             [t.name for t in response.templates],
-            ['base.html', 'contact/error.html']
+            ['base.html', 'error.html']
         )
         self.assertEqual(response.context['back_url'], 'http://website.com/contact/')
 

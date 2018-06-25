@@ -6,7 +6,7 @@ from dotenv import find_dotenv, load_dotenv
 
 if __name__ == "__main__":
     load_dotenv(find_dotenv())
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "interaction.settings.production")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.production")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
