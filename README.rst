@@ -1,11 +1,11 @@
 Contact
 =======
 
-.. image:: https://travis-ci.com/daniel-aguilar/interaction.svg?branch=master
-   :target: https://travis-ci.com/daniel-aguilar/interaction
+.. image:: https://travis-ci.com/daniel-aguilar/contact.svg?branch=master
+   :target: https://travis-ci.com/daniel-aguilar/contact
 
-.. image:: https://coveralls.io/repos/github/daniel-aguilar/interaction/badge.svg?branch=master
-   :target: https://coveralls.io/github/daniel-aguilar/interaction?branch=master
+.. image:: https://coveralls.io/repos/github/daniel-aguilar/contact/badge.svg?branch=master
+   :target: https://coveralls.io/github/daniel-aguilar/contact?branch=master
 
 Dead simple contact form back-end.
 
