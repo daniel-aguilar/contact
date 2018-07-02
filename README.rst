@@ -33,7 +33,7 @@ Create a ``.env`` file in the root directory, with the following variables:
 * ``EMAIL_HOST_USER``
 * ``EMAIL_HOST_PASSWORD``
 * ``EMAIL_SENDER``: Address from which email is sent.
-* ``EMAIL_RECIPIENT``: Email address for *notifications* (e.g. contact form
+* ``EMAIL_RECIPIENT``: Email address for *notifications* (i.e. contact form
   messages).
 * ``RECAPTCHA_SECRET_KEY``
 * ``HOMEPAGE_URL``: Home page URL of your website.
