@@ -1,10 +1,10 @@
-.PHONY: test isort lint
+.PHONY: test lint isort
 
-test: lint
+test:
 	coverage run manage.py test --settings "settings.dev"
-
-isort:
-	isort -rc --atomic .
 
 lint: isort
 	flake8
+
+isort:
+	isort -rc --atomic .
