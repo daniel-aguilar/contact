@@ -12,7 +12,7 @@ Dead simple contact form back-end.
 Requisites
 ----------
 
-* Python 3.6+
+* Python 3.8
 * Make
 * A `reCAPTCHA API key`_
 * A transactional email provider (e.g. `AWS SES`_)
