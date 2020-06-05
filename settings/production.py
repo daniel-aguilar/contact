@@ -40,33 +40,6 @@ USE_I18N = False
 
 USE_TZ = True
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'default',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': 'application.log',
-            'formatter': 'default',
-        }
-    },
-    'formatters': {
-        'default': {
-            'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        }
-    },
-    'loggers': {
-        'contact': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-        },
-    },
-}
-
 SECURE_SSL_REDIRECT = True
 
 EMAIL_HOST = os.getenv('EMAIL_HOST')
