@@ -25,14 +25,5 @@ def contact(request):
             settings.EMAIL_SENDER,
             [settings.EMAIL_RECIPIENT]
         )
-        return render(
-            request,
-            'success.html',
-            {'back_url': settings.HOMEPAGE_URL}
-        )
-    else:
-        return render(
-            request,
-            'error.html',
-            {'back_url': settings.CONTACT_URL}
-        )
+        return render(request, 'success.html')
+    return render(request, 'error.html')

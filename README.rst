@@ -36,9 +36,6 @@ Create a ``.env`` file in the root directory, with the following variables:
 * ``EMAIL_RECIPIENT``: Email address for *notifications* (i.e. contact form
   messages).
 * ``RECAPTCHA_SECRET_KEY``
-* ``HOMEPAGE_URL``: Home page URL of your website.
-* ``CONTACT_URL``: *Contact* URL page of your website (e.g.
-  ``http://website.com/contact/``).
 
 Run it::
 

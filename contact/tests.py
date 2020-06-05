@@ -10,8 +10,6 @@ from .forms import CaptchaField
 @override_settings(
     EMAIL_SENDER='contact@website.com',
     EMAIL_RECIPIENT='daniel@website.com',
-    HOMEPAGE_URL='http://website.com/',
-    CONTACT_URL='http://website.com/contact/'
 )
 class ContactTestCase(SimpleTestCase):
     def setUp(self):
@@ -39,7 +37,6 @@ class ContactTestCase(SimpleTestCase):
             [t.name for t in response.templates],
             ['message', 'base.html', 'success.html']
         )
-        self.assertEqual(response.context['back_url'], 'http://website.com/')
 
     @patch('contact.forms.CaptchaField.validate')
     def test_invalid_form(self, validate):
@@ -51,7 +48,6 @@ class ContactTestCase(SimpleTestCase):
             [t.name for t in response.templates],
             ['base.html', 'error.html']
         )
-        self.assertEqual(response.context['back_url'], 'http://website.com/contact/')
 
 
 @patch('requests.post')
