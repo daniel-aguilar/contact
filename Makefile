@@ -7,4 +7,4 @@ lint: isort
 	flake8
 
 isort:
-	isort -rc --atomic .
+	isort -c
