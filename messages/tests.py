@@ -20,7 +20,7 @@ class ContactTestCase(SimpleTestCase):
             'g-recaptcha-response': 'I am not a robot',
         }
 
-    @patch('contact.forms.CaptchaField.validate')
+    @patch('messages.forms.CaptchaField.validate')
     def test_send_email(self, validate):
         self.client.post('/contact/', self.form_data)
 
@@ -28,7 +28,7 @@ class ContactTestCase(SimpleTestCase):
         self.assertEqual(mail.outbox[0].from_email, 'contact@website.com')
         self.assertCountEqual(mail.outbox[0].recipients(), ['daniel@website.com'])
 
-    @patch('contact.forms.CaptchaField.validate')
+    @patch('messages.forms.CaptchaField.validate')
     def test_valid_form(self, validate):
         response = self.client.post('/contact/', self.form_data)
 
@@ -38,7 +38,7 @@ class ContactTestCase(SimpleTestCase):
             ['message', 'base.html', 'success.html']
         )
 
-    @patch('contact.forms.CaptchaField.validate')
+    @patch('messages.forms.CaptchaField.validate')
     def test_invalid_form(self, validate):
         validate.side_effect = ValidationError('Invalid CAPTCHA', code='captcha')
         response = self.client.post('/contact/', self.form_data)

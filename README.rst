@@ -25,7 +25,7 @@ Install the dependencies::
 Create a ``.env`` file in the root directory, with the following variables:
 
 * ``DJANGO_SETTINGS_MODULE``: The current Django settings you want to use (e.g.
-  ``settings.dev``).
+  ``contact.settings.dev``).
 * ``EMAIL_HOST``
 * ``EMAIL_HOST_USER``
 * ``EMAIL_HOST_PASSWORD``

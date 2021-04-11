@@ -10,7 +10,7 @@ from .forms import ContactForm
 
 @csrf_exempt
 @require_POST
-def contact(request):
+def send_message(request):
     data = request.POST.copy()
     data.setlist('captcha_response', data.pop('g-recaptcha-response', []))
 
