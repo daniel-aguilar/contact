@@ -1,0 +1,4 @@
+service: contact-daniel
+runtime: python310
+includes:
+  - env_variables.yaml

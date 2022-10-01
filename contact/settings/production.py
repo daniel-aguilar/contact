@@ -23,7 +23,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['contact-daniel.herokuapp.com']
+ALLOWED_HOSTS = ['contact-daniel-dot-delicious-gyros.uc.r.appspot.com']
 
 
 # Application definition
