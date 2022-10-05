@@ -1,6 +1,9 @@
 .gcloudignore
 .git
 .gitignore
+
 /setup.cfg
+
 #!include:.gitignore
 !env_variables.yaml
+.idea/
