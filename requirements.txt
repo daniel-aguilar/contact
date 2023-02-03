@@ -2,11 +2,11 @@ asgiref==3.6.0
 certifi==2022.12.7
 charset-normalizer==3.0.1
 coverage==7.1.0
-Django==3.2.16
+Django==3.2.17
 flake8==6.0.0
 gunicorn==20.1.0
 idna==3.4
-isort==5.11.4
+isort==5.12.0
 mccabe==0.7.0
 pycodestyle==2.10.0
 pyflakes==3.0.1
