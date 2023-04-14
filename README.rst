@@ -6,10 +6,10 @@ Contact
 
 Dead simple contact form back-end.
 
-Requisites
-----------
+Requirements
+------------
 
-* Python 3.9
+* Python 3.11
 * Make
 * A `reCAPTCHA API key`_
 * A transactional email provider (e.g. `AWS SES`_)
