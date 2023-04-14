@@ -3,5 +3,4 @@ htmlcov/
 .coverage
 .env
 .venv
-.idea
 env_variables.yaml
