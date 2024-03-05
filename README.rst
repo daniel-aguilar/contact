@@ -9,7 +9,7 @@ Dead simple contact form back-end.
 Requirements
 ------------
 
-* Python 3.11
+* Python 3.12
 * Make
 * A `reCAPTCHA API key`_
 * A transactional email provider (e.g. `AWS SES`_)
