@@ -22,6 +22,6 @@ class CaptchaField(forms.CharField):
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=45)
-    email = forms.CharField(max_length=25)
+    email = forms.EmailField(max_length=64)
     message = forms.CharField(max_length=1000)
     captcha_response = CaptchaField()
