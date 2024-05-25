@@ -2,7 +2,7 @@ asgiref==3.8.1
 certifi==2024.2.2
 charset-normalizer==3.3.2
 coverage==7.5.0
-Django==4.2.11
+Django==4.2.13
 flake8==7.0.0
 gunicorn==22.0.0
 idna==3.7
