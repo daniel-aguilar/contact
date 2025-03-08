@@ -2,3 +2,5 @@ service: contact-daniel
 runtime: python312
 includes:
   - env_variables.yaml
+automatic_scaling:
+  max_instances: 5
