@@ -1,10 +1,10 @@
-.PHONY: test lint isort
+.PHONY: test lint format
 
-test:
+test: lint
 	coverage run manage.py test --settings "contact.settings.dev"
 
-lint: isort
-	flake8
+lint: format
+	ruff check
 
-isort:
-	isort -c .
+format:
+	ruff format --check

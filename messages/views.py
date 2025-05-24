@@ -14,18 +14,18 @@ from .forms import ContactForm
 @require_POST
 def send_message(request):
     data = request.POST.copy()
-    data.setlist('captcha_response', data.pop('g-recaptcha-response', []))
+    data.setlist("captcha_response", data.pop("g-recaptcha-response", []))
 
     form = ContactForm(data)
 
     if form.is_valid():
-        template = get_template('message', 'plaintext')
+        template = get_template("message", "plaintext")
 
         send_mail(
-            'New message from your contact form',
+            "New message from your contact form",
             template.render(form.cleaned_data),
             settings.EMAIL_SENDER,
-            [settings.EMAIL_RECIPIENT]
+            [settings.EMAIL_RECIPIENT],
         )
-        return render(request, 'success.html')
-    return render(request, 'error.html')
+        return render(request, "success.html")
+    return render(request, "error.html")

@@ -9,15 +9,15 @@ class CaptchaField(forms.CharField):
     def validate(self, value):
         super().validate(value)
 
-        url = 'https://www.google.com/recaptcha/api/siteverify'
+        url = "https://www.google.com/recaptcha/api/siteverify"
         data = {
-            'secret': settings.RECAPTCHA_SECRET_KEY,
-            'response': value,
+            "secret": settings.RECAPTCHA_SECRET_KEY,
+            "response": value,
         }
         response = requests.post(url, data)
 
-        if not response.json().get('success', False):
-            raise ValidationError(_('Invalid CAPTCHA'), code='captcha')
+        if not response.json().get("success", False):
+            raise ValidationError(_("Invalid CAPTCHA"), code="captcha")
 
 
 class ContactForm(forms.Form):
