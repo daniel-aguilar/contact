@@ -54,7 +54,7 @@ class ContactTestCase(SimpleTestCase):
 class ContactFormTestCase(SimpleTestCase):
     def test_valid_captcha(self, post, Response):
         res = Response()
-        res.json = MagicMock(return_value={"success": True})
+        res.json = MagicMock(return_value={"tokenProperties": {"valid": True}})
         post.return_value = res
 
         field = CaptchaField()
@@ -62,7 +62,7 @@ class ContactFormTestCase(SimpleTestCase):
 
     def test_invalid_captcha(self, post, Response):
         res = Response()
-        res.json = MagicMock(return_value={"success": False})
+        res.json = MagicMock(return_value={"tokenProperties": {"valid": False}})
         post.return_value = res
 
         field = CaptchaField()

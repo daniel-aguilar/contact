@@ -9,14 +9,23 @@ class CaptchaField(forms.CharField):
     def validate(self, value):
         super().validate(value)
 
-        url = "https://www.google.com/recaptcha/api/siteverify"
+        url = (
+            f"https://recaptchaenterprise.googleapis.com/v1/projects/delicious-gyros/"
+            f"assessments?key={settings.RECAPTCHA_API_KEY}"
+        )
         data = {
-            "secret": settings.RECAPTCHA_SECRET_KEY,
-            "response": value,
+            "event": {
+                "token": value,
+                "siteKey": settings.RECAPTCHA_SITE_KEY,
+            },
         }
-        response = requests.post(url, data)
+        response = requests.post(url, json=data)
+        response.raise_for_status()
 
-        if not response.json().get("success", False):
+        token_props = response.json().get("tokenProperties", {})
+        valid = token_props.get("valid", False)
+
+        if not valid:
             raise ValidationError(_("Invalid CAPTCHA"), code="captcha")
 
 
