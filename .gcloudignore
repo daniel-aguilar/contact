@@ -6,3 +6,5 @@
 
 #!include:.gitignore
 !env_variables.yaml
+
+.idea/
