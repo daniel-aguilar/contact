@@ -1,8 +1,4 @@
-[flake8]
-extend-ignore = E501
-extend-exclude = .venv
-
-[coverage:run]
+[run]
 source = contact, messages
 omit =
     contact/wsgi.py
